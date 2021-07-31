@@ -2,12 +2,6 @@
 Application user accounts
 */
 
-# CI runners user account - by default can only push & pull from ECR
-// module "ci_user" {
-//   source  = "../../modules/iam/user_ci"
-//   pgp_key = var.pgp_key
-// }
-
 # Terraform user account for applying account changes
 module "terraform_user" {
   source  = "../../modules/iam/user_terraform"
@@ -29,8 +23,8 @@ Administrator user accounts
 */
 
 module "marc" {
-  source = "../../modules/iam/user"
-  name   = "marc"
+  source  = "../../modules/iam/user"
+  name    = "marc"
 
   groups = [
     module.administrator_group.name,
