@@ -48,7 +48,7 @@ locals {
   trusted_cidr_blocks = []
 
   # Certificate ARN in AWS eu-central-1 - this can be created manually
-  kms_key = "arn:aws:kms:eu-central-1:281277350703:key/b8b8ce8b-7127-4409-bd69-53d156fb29d5"
+  kms_key = "arn:aws:kms:eu-central-1:706917661981:key/767fb4b0-d5da-4bef-87ef-bbf9f5a2094d"
 }
 
 variable "pgp_key" {
