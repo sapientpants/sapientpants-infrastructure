@@ -22,12 +22,6 @@ resource "aws_dynamodb_table" "sapientpants_terraform" {
     name = "LockID"
     type = "S"
   }
-
-  // tags {
-  //   Name        = "sapientpants-terraform"
-  //   Terraform   = "true"
-  //   Environment = "${local.environment}"
-  // }
 }
 
 provider "aws" {
