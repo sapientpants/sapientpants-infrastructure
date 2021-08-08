@@ -21,29 +21,34 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.3
+
+      - name: Terraform fmt
+        id: fmt
+        working-directory: 'accounts/sandbox'
+        run: terraform fmt -check
+        continue-on-error: true
 
       - name: Terraform Init
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.0
-          tf_actions_subcommand: 'init'
-          tf_actions_working_dir: 'accounts/sandbox'
-          tf_actions_comment: true
+        id: init
+        working-directory: 'accounts/sandbox'
+        run: terraform init
+
+      - name: Terraform Validate
+        id: validate
+        working-directory: 'accounts/sandbox'
+        run: terraform validate -no-color
 
       - name: Terraform Plan
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.0
-          tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: 'accounts/sandbox'
-          tf_actions_comment: true
+        id: plan
+        working-directory: 'accounts/sandbox'
+        run: terraform plan -no-color
+        continue-on-error: true
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.0
-          tf_actions_subcommand: 'apply'
-          tf_actions_working_dir: 'accounts/sandbox'
-          tf_actions_comment: true
-          args: '-auto-approve'
+        id: apply
+        working-directory: 'accounts/sandbox'
+        run: terraform apply -auto-approve -no-color
