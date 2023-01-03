@@ -11,8 +11,7 @@ terraform {
 resource "aws_dynamodb_table" "sapientpants_sandbox_terraform" {
   name           = "sapientpants-sandbox-terraform"
   hash_key       = "LockID"
-  read_capacity  = 20
-  write_capacity = 20
+  billing_mode   = "PAY_PER_REQUEST"
 
   server_side_encryption {
     enabled = true
