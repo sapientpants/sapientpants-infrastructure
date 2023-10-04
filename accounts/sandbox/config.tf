@@ -3,7 +3,7 @@ terraform {
     bucket         = "sapientpants-sandbox-terraform"
     region         = "eu-central-1"
     key            = "terraform.tfstate"
-    // dynamodb_table = "sapientpants-sandbox-terraform"
+    dynamodb_table = "sapientpants-sandbox-terraform"
     encrypt        = true
   }
 }
